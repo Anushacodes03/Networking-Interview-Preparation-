@@ -267,4 +267,4 @@ A: NAT provides a side benefit of obscuring internal IP addressing since interna
 
 ---
 
-**Next:** *Part 2 — Security-Applied Networking* covers Firewalls (stateful/stateless), IDS/IPS, VPNs, wireless security, network-based attacks (DDoS, MITM, spoofing), packet analysis/Wireshark, Zero Trust, and cloud networking security — say the word and I'll build that one too.
+**Next:** *Part 2 — Security-Applied Networking* covers Firewalls (stateful/stateless), IDS/IPS, VPNs, wireless security, network-based attacks (DDoS, MITM, spoofing), packet analysis/Wireshark, Zero Trust, and cloud networking security 

@@ -1,0 +1,42 @@
+Here's the practical list — the ones that actually come up in interviews, ranked by how often they're asked about.
+
+## Must-know (asked in almost every interview)
+
+| Port | Protocol | Why it matters |
+|---|---|---|
+| **22** | SSH | Secure remote login — replaced Telnet. Interviewers love asking "why is this more secure than Telnet." |
+| **23** | Telnet | Plaintext remote login — the "insecure" answer to compare against SSH. |
+| **80** | HTTP | Unencrypted web traffic. |
+| **443** | HTTPS | Encrypted web traffic (TLS). Always paired with a TLS handshake question. |
+| **53** | DNS | Name resolution. Comes up with DNS spoofing/tunneling questions. |
+| **25** | SMTP | Sending email — comes up with phishing/BEC discussions. |
+| **3389** | RDP | Remote Desktop — **the single most-asked "red flag" port** in scenario questions (ransomware initial access vector when exposed to the internet). |
+
+## Frequently asked (round 2 depth)
+
+| Port | Protocol | Notes |
+|---|---|---|
+| 20/21 | FTP | File transfer, unencrypted — contrast with SFTP/FTPS |
+| 67/68 | DHCP | Server/client — ties into DORA process |
+| 110 | POP3 | Email retrieval (downloads and removes from server) |
+| 143 | IMAP | Email retrieval (syncs, keeps on server) — asked as "POP3 vs IMAP" |
+| 161/162 | SNMP | Network device monitoring — weak in v1/v2c (community strings in plaintext) |
+| 389 | LDAP | Directory services (Active Directory) |
+| 636 | LDAPS | Encrypted LDAP |
+| 445 | SMB | File sharing — **huge for interviews** because of EternalBlue/WannaCry association |
+| 3306 | MySQL | Database — exposed DB ports are a common misconfig scenario |
+| 5432 | PostgreSQL | Same idea as above |
+
+## The #1 port for scenario-based interview questions
+
+**Port 3389 (RDP)** and **Port 445 (SMB)** are the two you should be most ready to discuss in depth — almost every SOC/intern interview includes some version of:
+
+> *"You see traffic on port 3389/445 from an unexpected external IP — what does that indicate and what would you do?"*
+
+**Model answer for 3389 (RDP):**
+"That's Remote Desktop Protocol. Unexpected external RDP exposure is one of the most common ransomware entry points — attackers brute-force or use leaked credentials against it. I'd check whether RDP is meant to be internet-facing at all, look for repeated failed logins (brute force indicator), confirm MFA and account lockout policies are enforced, and recommend putting it behind a VPN instead of exposing it directly."
+
+**Model answer for 445 (SMB):**
+"That's the port for Server Message Block file sharing, tied to major worm outbreaks like WannaCry via the EternalBlue exploit. Internet-facing SMB is a critical red flag — it should never be exposed externally. I'd check patch levels (SMBv1 should be disabled), verify it's blocked at the perimeter firewall, and look for lateral movement patterns internally."
+
+I
